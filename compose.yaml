@@ -1,8 +1,14 @@
 services:
-  server:
+  web:
       image: klakegg/hugo:0.107.0-ext-alpine
       command: server -D --poll 700ms
       volumes:
         - "./web:/src"
       ports:
         - "8001:1313"
+  api:
+    build: ./api
+    ports:
+      - "8000:5000"
+  redis:
+    image: "redis:alpine"

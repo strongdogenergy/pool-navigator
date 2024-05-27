@@ -1,11 +1,35 @@
-<!doctype html> 
-<html lang="en"> 
-  <head> 
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <title>HUGO & Docker demo</title>  
-  </head> 
-  <body> 
-    <h1>Hello, world!!!</h1> 
-  </body> 
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1 id=countBanner>count: -</h1>
+
+    <h1 id="secureCountBanner">secure count: -</h1>
+
+    <button onclick="counter()">Count</button>
+
+    <button onclick="secureCounter()">Secure Count</button>
+
+    <script>
+        function counter() {
+            const room_url = "http://localhost:8000"
+            fetch(room_url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("countBanner").innerText = `count: ${data.hits}`
+                    
+                })
+        }
+        function secureCounter() {
+            const url = "http://localhost:8000/secure"
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("countBanner").innerText = `count: ${data.hits}`
+                    document.getElementById("secureCountBanner").innerText = `secure count: ${data.secure_hits}`
+                })
+        }
+    </script>
+</body>
+
 </html>
