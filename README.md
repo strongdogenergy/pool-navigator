@@ -36,12 +36,12 @@ redis:
 ```json
 {
     "web": {
-        "client_id": "195469411341-jg75kao7n2rkuc2i5h1p7j9qut2q3ocb.apps.googleusercontent.com",
+        "client_id": "19********cb.apps.googleusercontent.com",
         "project_id": "pool-navigator",
         "auth_uri": "https://accounts.google.com/o/oauth2/auth",
         "token_uri": "https://oauth2.googleapis.com/token",
         "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-        "client_secret": "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",
+        "client_secret": "GO********6g",
         "redirect_uris": [
             "http://localhost:8001/login/callback"
         ],
@@ -55,6 +55,6 @@ redis:
 ```
 - Secrets in .env file
 ```bash
-GOOGLE_CLIENT_ID=195469411341-jg75kao7n2rkuc2i5h1p7j9qut2q3ocb.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=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
+GOOGLE_CLIENT_ID=19********cb.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=GO********6g
 ```
