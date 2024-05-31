@@ -8,6 +8,9 @@ services:
         - "8001:1313"
   api:
     build: ./api
+    volumes:
+      - ./api/:/api
+      - ./api/schema.sql:/schema.sql
     ports:
       - "8000:5000"
     environment:
