@@ -20,7 +20,7 @@ from oauthlib.oauth2 import WebApplicationClient
 import requests
 
 # Internal imports
-from db import init_db_command
+from db import init_db_command, hello_db, init_db
 from user import User
 
 # Configuration
@@ -36,9 +36,24 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 
-
-
 cache = redis.Redis(host='redis', port=6379)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# Naive database setup
+try:
+    init_db_command()
+except sqlite3.OperationalError:
+    # Assume it's already been created
+    pass
+
+# OAuth 2 client setup
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
+
+# Flask-Login helper to retrieve a user from our db
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 def get_hit_count():
     retries = 5
